@@ -146,15 +146,15 @@ SparseMatrix SparseMatrix::operator*(const SparseMatrix& other) const {
     int bTerms = (int)bTrans.elements[0].data;
 
     for (int i = 1; i <= aTerms; ) {
-        int r = elements[i].row;
+        int rCurrent = elements[i].row;
         int rStart = i;
-        while (i <= aTerms && elements[i].row == r) i++;
+        while (i <= aTerms && elements[i].row == rCurrent) i++;
         int rEnd = i;
 
         for (int j = 1; j <= bTerms; ) {
-            int c = bTrans.elements[j].row;
+            int cCurrent = bTrans.elements[j].row;
             int cStart = j;
-            while (j <= bTerms && bTrans.elements[j].row == c) j++;
+            while (j <= bTerms && bTrans.elements[j].row == cCurrent) j++;
             int cEnd = j;
 
             double sum = 0.0;
@@ -168,7 +168,7 @@ SparseMatrix SparseMatrix::operator*(const SparseMatrix& other) const {
                     pB++;
                 }
             }
-            if (sum != 0.0) result.addElement(r, c, sum);
+            if (sum != 0.0) result.addElement(rCurrent, cCurrent, sum);
         }
     }
     result.quickSort(1, (int)result.elements[0].data);
