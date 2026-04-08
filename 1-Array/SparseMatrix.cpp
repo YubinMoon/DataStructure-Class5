@@ -1,5 +1,6 @@
 #include "SparseMatrix.h"
 #include <iostream>
+#include <cstring>
 
 SparseMatrix::SparseMatrix(int r, int c, int cap) : capacity(cap)
 {
@@ -174,49 +175,49 @@ SparseMatrix SparseMatrix::operator-(const SparseMatrix &other) const
 
 SparseMatrix SparseMatrix::operator*(const SparseMatrix &other) const
 {
-    int rows = elements[0].row;
-    int other_cols = (int)other.elements[0].col;
+    int rowsA = elements[0].row;
+    int colsA = elements[0].col;
+    int colsB = (int)other.elements[0].col;
     int aTerms = (int)elements[0].data;
 
-    SparseMatrix result(rows, other_cols);
+    SparseMatrix result(rowsA, colsB);
+
+    if (aTerms == 0 || other.elements[0].data == 0)
+        return result;
+
     SparseMatrix bTrans = other.transpose();
     int bTerms = (int)bTrans.elements[0].data;
+
+    double *denseA = new double[colsA];
 
     for (int i = 1; i <= aTerms;)
     {
         int rCurrent = elements[i].row;
-        int rStart = i;
+        memset(denseA, 0, sizeof(double) * colsA);
         while (i <= aTerms && elements[i].row == rCurrent)
+        {
+            denseA[elements[i].col] = elements[i].data;
             i++;
-        int rEnd = i;
+        }
 
         for (int j = 1; j <= bTerms;)
         {
             int cCurrent = bTrans.elements[j].row;
-            int cStart = j;
-            while (j <= bTerms && bTrans.elements[j].row == cCurrent)
-                j++;
-            int cEnd = j;
-
             double sum = 0.0;
-            int pA = rStart, pB = cStart;
-            while (pA < rEnd && pB < cEnd)
+            while (j <= bTerms && bTrans.elements[j].row == cCurrent)
             {
-                if (elements[pA].col < bTrans.elements[pB].col)
-                    pA++;
-                else if (elements[pA].col > bTrans.elements[pB].col)
-                    pB++;
-                else
-                {
-                    sum += elements[pA].data * bTrans.elements[pB].data;
-                    pA++;
-                    pB++;
-                }
+                int targetCol = bTrans.elements[j].col; // B^T의 col은 원래 B의 row
+                sum += denseA[targetCol] * bTrans.elements[j].data;
+                j++;
             }
+
             if (sum != 0.0)
                 result.addElement(rCurrent, cCurrent, sum);
         }
     }
+
+    delete[] denseA;
+
     result.quickSort(1, (int)result.elements[0].data);
     return result;
 }
