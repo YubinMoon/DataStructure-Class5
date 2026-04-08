@@ -9,9 +9,6 @@ struct Element {
 
 class SparseMatrix {
 private:
-    int rows;
-    int cols;
-    int terms;
     int capacity;
     Element* elements;
 
