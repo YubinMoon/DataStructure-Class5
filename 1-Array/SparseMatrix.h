@@ -12,6 +12,8 @@ private:
     int capacity;
     Element* elements;
 
+    void quickSort(int low, int high);
+
 public:
     SparseMatrix(int r, int c, int cap = 10);
     SparseMatrix(const SparseMatrix& other);
