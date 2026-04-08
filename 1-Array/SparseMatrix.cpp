@@ -1,6 +1,7 @@
 #include "SparseMatrix.h"
 #include <iostream>
 #include <cstring>
+#include <algorithm>
 
 SparseMatrix::SparseMatrix(int r, int c, int cap) : capacity(cap)
 {
@@ -65,28 +66,11 @@ void SparseMatrix::addElement(int r, int c, double val)
     elements[0].data = (double)terms;
 }
 
-void SparseMatrix::quickSort(int low, int high)
+static bool compareElements(const Element &a, const Element &b)
 {
-    if (low >= high)
-        return;
-    Element pivot = elements[high];
-    int i = low - 1;
-    for (int j = low; j < high; j++)
-    {
-        if (elements[j].row < pivot.row || (elements[j].row == pivot.row && elements[j].col < pivot.col))
-        {
-            i++;
-            Element temp = elements[i];
-            elements[i] = elements[j];
-            elements[j] = temp;
-        }
-    }
-    Element temp = elements[i + 1];
-    elements[i + 1] = elements[high];
-    elements[high] = temp;
-    int p = i + 1;
-    quickSort(low, p - 1);
-    quickSort(p + 1, high);
+    if (a.row != b.row)
+        return a.row < b.row;
+    return a.col < b.col;
 }
 
 SparseMatrix SparseMatrix::operator+(const SparseMatrix &other) const
@@ -127,7 +111,9 @@ SparseMatrix SparseMatrix::operator+(const SparseMatrix &other) const
     for (; j <= bTerms; j++)
         result.addElement(other.elements[j].row, other.elements[j].col, other.elements[j].data);
 
-    result.quickSort(1, (int)result.elements[0].data);
+    int resTerms = (int)result.elements[0].data;
+    if (resTerms > 0)
+        std::sort(result.elements + 1, result.elements + resTerms + 1, compareElements);
     return result;
 }
 
@@ -169,7 +155,9 @@ SparseMatrix SparseMatrix::operator-(const SparseMatrix &other) const
     for (; j <= bTerms; j++)
         result.addElement(other.elements[j].row, other.elements[j].col, -other.elements[j].data);
 
-    result.quickSort(1, (int)result.elements[0].data);
+    int resTerms = (int)result.elements[0].data;
+    if (resTerms > 0)
+        std::sort(result.elements + 1, result.elements + resTerms + 1, compareElements);
     return result;
 }
 
@@ -190,7 +178,8 @@ SparseMatrix SparseMatrix::operator*(const SparseMatrix &other) const
 
     double *denseA = new double[colsA];
 
-    for (int i = 1; i <= aTerms;)
+    int i = 1;
+    while (i <= aTerms)
     {
         int rCurrent = elements[i].row;
         memset(denseA, 0, sizeof(double) * colsA);
@@ -200,13 +189,14 @@ SparseMatrix SparseMatrix::operator*(const SparseMatrix &other) const
             i++;
         }
 
-        for (int j = 1; j <= bTerms;)
+        int j = 1;
+        while (j <= bTerms)
         {
             int cCurrent = bTrans.elements[j].row;
             double sum = 0.0;
             while (j <= bTerms && bTrans.elements[j].row == cCurrent)
             {
-                int targetCol = bTrans.elements[j].col; // B^T의 col은 원래 B의 row
+                int targetCol = bTrans.elements[j].col;
                 sum += denseA[targetCol] * bTrans.elements[j].data;
                 j++;
             }
@@ -218,7 +208,9 @@ SparseMatrix SparseMatrix::operator*(const SparseMatrix &other) const
 
     delete[] denseA;
 
-    result.quickSort(1, (int)result.elements[0].data);
+    int resTerms = (int)result.elements[0].data;
+    if (resTerms > 0)
+        std::sort(result.elements + 1, result.elements + resTerms + 1, compareElements);
     return result;
 }
 
@@ -256,7 +248,9 @@ SparseMatrix SparseMatrix::operator/(const SparseMatrix &other) const
             j++;
         }
     }
-    result.quickSort(1, (int)result.elements[0].data);
+    int resTerms = (int)result.elements[0].data;
+    if (resTerms > 0)
+        std::sort(result.elements + 1, result.elements + resTerms + 1, compareElements);
     return result;
 }
 
@@ -268,7 +262,9 @@ SparseMatrix SparseMatrix::transpose() const
     {
         result.addElement(elements[i].col, elements[i].row, elements[i].data);
     }
-    result.quickSort(1, (int)result.elements[0].data);
+    int resTerms = (int)result.elements[0].data;
+    if (resTerms > 0)
+        std::sort(result.elements + 1, result.elements + resTerms + 1, compareElements);
     return result;
 }
 
