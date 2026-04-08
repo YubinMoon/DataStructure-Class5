@@ -1,6 +1,8 @@
 #ifndef DENSE_MATRIX_H
 #define DENSE_MATRIX_H
 
+#include <iostream>
+
 class DenseMatrix
 {
 private:

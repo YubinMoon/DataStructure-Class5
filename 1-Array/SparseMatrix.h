@@ -1,6 +1,8 @@
 #ifndef SPARSE_MATRIX_H
 #define SPARSE_MATRIX_H
 
+#include <iostream>
+#include <cstring>
 #include <algorithm>
 
 struct Element
