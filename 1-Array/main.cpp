@@ -109,8 +109,10 @@ int main() {
 
     int numTests = sizeof(sizes) / sizeof(sizes[0]);
 
-    for (int i = 0; i < numTests; ++i) {
-        testMatrixOperations(sizes[i][0], sizes[i][1], sizes[i][2], 5);
+    for (int i = 0; i < 100; ++i) {
+        for (int j = 0; j < numTests; ++j) {
+            testMatrixOperations(sizes[j][0], sizes[j][1], sizes[j][2], i);
+        }
     }
 
     return 0;
