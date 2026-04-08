@@ -47,7 +47,7 @@ void SparseMatrix::addElement(int r, int c, double val)
     if (val == 0.0)
         return;
     int terms = (int)elements[0].data;
-    if (terms + 1 == capacity)
+    if (terms + 1 >= capacity)
     {
         capacity *= 2;
         Element *newElements = new Element[capacity];
@@ -279,4 +279,15 @@ void SparseMatrix::print() const
     {
         std::cout << "[" << elements[i].row << "][" << elements[i].col << "] = " << elements[i].data << "\n";
     }
+}
+
+double SparseMatrix::getValue(int r, int c) const
+{
+    int terms = (int)elements[0].data;
+    for (int i = 1; i <= terms; ++i)
+    {
+        if (elements[i].row == r && elements[i].col == c)
+            return elements[i].data;
+    }
+    return 0.0;
 }

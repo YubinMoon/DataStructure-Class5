@@ -8,41 +8,52 @@
 using namespace std;
 using namespace std::chrono;
 
-void testMatrixOperations(int M, int N, int K, int pct) {
+void testMatrixOperations(int M, int N, int K, int pct)
+{
     cout << "\n======================================" << endl;
-    cout << "  Test Matrix Size: " << M << "x" << N << " (Mul: " << M << "x" << K << " * " << K << "x" << N << ")" <<" Density: " << pct << "%" << endl;
+    cout << "  Test Matrix Size: " << M << "x" << N << " (Mul: " << M << "x" << K << " * " << K << "x" << N << ")" << " Density: " << pct << "%" << endl;
     cout << "======================================" << endl;
 
     DenseMatrix d1(M, N), d2(M, N), d3(M, K), d4(K, N);
     SparseMatrix s1(M, N), s2(M, N), s3(M, K), s4(K, N);
 
     // 랜덤 데이터 채우기 (희소성: 약 5% 확률로 0이 아닌 값)
-    for (int i = 0; i < M; ++i) {
-        for (int j = 0; j < N; ++j) {
-            if (rand() % 100 < pct) {
+    for (int i = 0; i < M; ++i)
+    {
+        for (int j = 0; j < N; ++j)
+        {
+            if (rand() % 100 < pct)
+            {
                 double val = (rand() % 100) + 1;
                 d1.setValue(i, j, val);
                 s1.addElement(i, j, val);
             }
-            if (rand() % 100 < pct) {
+            if (rand() % 100 < pct)
+            {
                 double val = (rand() % 100) + 1;
                 d2.setValue(i, j, val);
                 s2.addElement(i, j, val);
             }
         }
     }
-    for (int i = 0; i < M; ++i) {
-        for (int j = 0; j < K; ++j) {
-            if (rand() % 100 < pct) {
+    for (int i = 0; i < M; ++i)
+    {
+        for (int j = 0; j < K; ++j)
+        {
+            if (rand() % 100 < pct)
+            {
                 double val = (rand() % 100) + 1;
                 d3.setValue(i, j, val);
                 s3.addElement(i, j, val);
             }
         }
     }
-    for (int i = 0; i < K; ++i) {
-        for (int j = 0; j < N; ++j) {
-            if (rand() % 100 < pct) {
+    for (int i = 0; i < K; ++i)
+    {
+        for (int j = 0; j < N; ++j)
+        {
+            if (rand() % 100 < pct)
+            {
                 double val = (rand() % 100) + 1;
                 d4.setValue(i, j, val);
                 s4.addElement(i, j, val);
@@ -95,22 +106,24 @@ void testMatrixOperations(int M, int N, int K, int pct) {
     cout << "[Sparse Trans]   " << duration_cast<microseconds>(end - start).count() << " us" << endl;
 }
 
-int main() {
+int main()
+{
     srand(static_cast<unsigned int>(time(NULL)));
-    
+
     // 테스트할 행렬 크기 배열 {M, N, K}
     int sizes[][3] = {
         {10, 10, 10},
         {50, 50, 50},
         {100, 100, 100},
         {200, 200, 200},
-        {500, 500, 300}
-    };
+        {500, 500, 300}};
 
     int numTests = sizeof(sizes) / sizeof(sizes[0]);
 
-    for (int i = 0; i < 100; ++i) {
-        for (int j = 0; j < numTests; ++j) {
+    for (int i = 0; i < 100; ++i)
+    {
+        for (int j = 0; j < numTests; ++j)
+        {
             testMatrixOperations(sizes[j][0], sizes[j][1], sizes[j][2], i);
         }
     }
