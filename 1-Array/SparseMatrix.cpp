@@ -1,7 +1,4 @@
 #include "SparseMatrix.h"
-#include <iostream>
-#include <cstring>
-#include <algorithm>
 
 SparseMatrix::SparseMatrix(int r, int c, int cap) : capacity(cap)
 {

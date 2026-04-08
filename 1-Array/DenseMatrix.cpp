@@ -1,5 +1,4 @@
 #include "DenseMatrix.h"
-#include <iostream>
 
 DenseMatrix::DenseMatrix(int r, int c) : rows(r), cols(c)
 {
