@@ -46,3 +46,12 @@ std::vector<int> SortManager::generateRandomData(int size) {
     for (int i = 0; i < size; i++) data[i] = dis(gen);
     return data;
 }
+
+bool SortManager::isSorted(int* arr, int size) {
+    for (int i = 0; i < size - 1; ++i) {
+        if (arr[i] > arr[i + 1]) {
+            return false; // 앞의 원소가 뒤의 원소보다 크면 정렬되지 않은 상태
+        }
+    }
+    return true; // 끝까지 통과하면 정렬된 상태
+}
