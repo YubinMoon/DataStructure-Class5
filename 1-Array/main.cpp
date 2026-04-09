@@ -72,6 +72,17 @@ void testMatrixOperations(int M, int N, int K, int pct)
     end = system_clock::now();
     cout << "[Sparse Add]     " << duration_cast<microseconds>(end - start).count() << " us" << endl;
 
+    // --- 뺄셈(Sub) ---
+    start = system_clock::now();
+    DenseMatrix dSub = d1 - d2;
+    end = system_clock::now();
+    cout << "[Dense Sub]      " << duration_cast<microseconds>(end - start).count() << " us" << endl;
+
+    start = system_clock::now();
+    SparseMatrix sSub = s1 - s2;
+    end = system_clock::now();
+    cout << "[Sparse Sub]     " << duration_cast<microseconds>(end - start).count() << " us" << endl;
+
     // --- 곱셈(Multiply) ---
     start = system_clock::now();
     DenseMatrix dMul = d3 * d4;
