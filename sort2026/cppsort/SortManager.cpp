@@ -1,24 +1,31 @@
 #include "SortManager.h"
 #include <algorithm>
 #include <random>
-//이 파일은 독립된 알고리즘 파일임
-void SortManager::bubbleSort(std::vector<int>& A) {
+// 이 파일은 독립된 알고리즘 파일임
+void SortManager::bubbleSort(std::vector<int> &A)
+{
     int n = A.size();
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = 0; j < n - i - 1; j++) {
-            if (A[j] > A[j + 1]) {
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            if (A[j] > A[j + 1])
+            {
                 std::swap(A[j], A[j + 1]);
             }
         }
     }
 }
 
-void SortManager::insertionSort(std::vector<int>& A) {
+void SortManager::insertionSort(std::vector<int> &A)
+{
     int n = A.size();
-    for (int i = 1; i < n; i++) {
+    for (int i = 1; i < n; i++)
+    {
         int key = A[i];
         int j = i - 1;
-        while (j >= 0 && A[j] > key) {
+        while (j >= 0 && A[j] > key)
+        {
             A[j + 1] = A[j];
             j--;
         }
@@ -26,30 +33,27 @@ void SortManager::insertionSort(std::vector<int>& A) {
     }
 }
 
-void SortManager::selectionSort(std::vector<int>& A) {
+void SortManager::selectionSort(std::vector<int> &A)
+{
     int n = A.size();
-    for (int i = 0; i < n - 1; i++) {
+    for (int i = 0; i < n - 1; i++)
+    {
         int min_idx = i;
-        for (int j = i + 1; j < n; j++) {
-            if (A[j] < A[min_idx]) min_idx = j;
+        for (int j = i + 1; j < n; j++)
+        {
+            if (A[j] < A[min_idx])
+                min_idx = j;
         }
         std::swap(A[i], A[min_idx]);
     }
 }
 
-std::vector<int> SortManager::generateRandomData(int size) {
-    //랜덤 데이터
-    std::vector<int> data(size);
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(1, 1000000);
-    for (int i = 0; i < size; i++) data[i] = dis(gen);
-    return data;
-}
-
-bool SortManager::isSorted(int* arr, int size) {
-    for (int i = 0; i < size - 1; ++i) {
-        if (arr[i] > arr[i + 1]) {
+bool SortManager::isSorted(int *arr, int size)
+{
+    for (int i = 0; i < size - 1; ++i)
+    {
+        if (arr[i] > arr[i + 1])
+        {
             return false; // 앞의 원소가 뒤의 원소보다 크면 정렬되지 않은 상태
         }
     }
