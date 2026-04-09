@@ -15,12 +15,22 @@ std::vector<int> generateRandomData(int size)
     return data;
 }
 
-void measureTime(std::string name, void (*sortFunc)(std::vector<int> &), int size, std::vector<int> data)
+void measureTime(std::string name, void (*sortFunc)(std::vector<int> &), int size, const std::vector<int> &data)
 {
+    auto new_data = data;
+    if (SortManager::isSorted(new_data))
+    {
+        std::cout << "already sorted" << std::endl;
+        return;
+    }
     auto start = std::chrono::high_resolution_clock::now();
-    sortFunc(data);
+    sortFunc(new_data);
     auto end = std::chrono::high_resolution_clock::now();
-
+    if (!SortManager::isSorted(new_data))
+    {
+        std::cout << "sort Failed" << std::endl;
+        return;
+    }
     std::chrono::duration<double> diff = end - start;
     std::cout << name << " (N=" << size << "): " << diff.count() << "s" << std::endl;
 }
