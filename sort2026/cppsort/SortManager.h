@@ -12,7 +12,7 @@ public:
     static void selectionSort(std::vector<int> &A);
 
     static std::vector<int> generateRandomData(int size);
-    static bool isSorted(int *arr, int size);
+    static bool isSorted(std::vector<int> &A);
 };
 
 #endif

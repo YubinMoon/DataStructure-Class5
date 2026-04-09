@@ -48,11 +48,12 @@ void SortManager::selectionSort(std::vector<int> &A)
     }
 }
 
-bool SortManager::isSorted(int *arr, int size)
+bool SortManager::isSorted(std::vector<int> &A)
 {
-    for (int i = 0; i < size - 1; ++i)
+    int n = A.size();
+    for (int i = 0; i < n - 1; ++i)
     {
-        if (arr[i] > arr[i + 1])
+        if (A[i] > A[i + 1])
         {
             return false; // 앞의 원소가 뒤의 원소보다 크면 정렬되지 않은 상태
         }
