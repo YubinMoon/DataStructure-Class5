@@ -42,8 +42,7 @@ std::string infixToPostfix(const std::string& infix) {
             }
             operators.pop(topValue);
         } else {
-            while (operators.top(topValue) && topValue != '(' &&
-                   precedence(topValue) >= precedence(ch)) {
+            while (operators.top(topValue) && topValue != '(' && precedence(topValue) >= precedence(ch)) {
                 operators.pop(topValue);
                 postfix += topValue;
             }
