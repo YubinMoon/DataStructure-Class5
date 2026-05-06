@@ -28,6 +28,20 @@ queuetest.cpp 코드를 작성해 _capacity가 20인 Queue에 20개 알파멧으
 
 ## Problem 4
 
+먼저 빈 스택을 하나 만들고, 입력받은 수식 문자열(expr)의 전체 길이를 계산합니다. 
+<img width="197" height="69" alt="스크린샷 2026-05-07 오전 8 50 17" src="https://github.com/user-attachments/assets/ec9a9a79-4981-4a85-b31a-e7176b11022a" />
+
+문자가 여는 괄호라면, 현재 위치하는 인덱스 번호 i를 스택에 저장(Push)합니다.
+<img width="348" height="46" alt="스크린샷 2026-05-07 오전 8 50 47" src="https://github.com/user-attachments/assets/db2865b4-f552-4937-a575-51589a214a2b" />
+
+닫는 괄호를 만나면 스택에서 값을 빼내어(Pop) 짝을 맞춥니다.
+
+예외 처리: 만약 값을 빼내려고 했는데 스택이 비어있다면(isEmpty), 여는 괄호보다 닫는 괄호가 먼저 나왔거나 더 많다는 뜻이므로 오류를 출력하고 함수를 종료합니다.
+
+정상 처리: 스택이 비어있지 않다면 가장 위에 있는 값(가장 최근에 저장된 여는 괄호의 인덱스)을 뽑아냅니다. 뽑아낸 인덱스(start_idx)와 현재 닫는 괄호의 인덱스(i)가 올바른 한 쌍이 됩니다.
+
+<img width="531" height="142" alt="스크린샷 2026-05-07 오전 8 51 09" src="https://github.com/user-attachments/assets/45856354-a4f2-44c6-a777-1cb5ca31abbd" />
+
 ## Problem 5
 
 `((1+2)*(3-4))/5` 형태의 Infix 수식을 `12+34-*5/` 형태의 Postfix로 변환해야 한다.
