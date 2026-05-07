@@ -1,37 +1,19 @@
 CXX = g++
-CXXFLAGS = -Wall -O2 -std=c++11
+CXXFLAGS = -std=c++17 -Wall -Wextra
+TARGET = hw4_p1_infix
+OBJS = main.o BinaryTree.o ExpressionParser.o
 
-TARGET_TEST = queuetest.exe
-TARGET_POSTFIX_TEST = postfixtest.exe
-TEST_OBJS = queuetest.o CircularQueue.o
-POSTFIX_TEST_OBJS = postfixtest.o InfixToPostfix.o Stack.o
+$(TARGET): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
 
-all: $(TARGET_TEST) $(TARGET_POSTFIX_TEST)
+main.o: main.cpp BinaryTree.h ExpressionParser.h
+	$(CXX) $(CXXFLAGS) -c main.cpp
 
-$(TARGET_TEST): $(TEST_OBJS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET_TEST) $(TEST_OBJS)
+BinaryTree.o: BinaryTree.cpp BinaryTree.h
+	$(CXX) $(CXXFLAGS) -c BinaryTree.cpp
 
-$(TARGET_POSTFIX_TEST): $(POSTFIX_TEST_OBJS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET_POSTFIX_TEST) $(POSTFIX_TEST_OBJS)
-
-test: $(TARGET_TEST) $(TARGET_POSTFIX_TEST)
-	./$(TARGET_TEST)
-	./$(TARGET_POSTFIX_TEST)
-
-queuetest.o: queuetest.cpp Queue/CircularQueue.h
-	$(CXX) $(CXXFLAGS) -c queuetest.cpp
-
-CircularQueue.o: Queue/CircularQueue.cpp Queue/CircularQueue.h
-	$(CXX) $(CXXFLAGS) -c Queue/CircularQueue.cpp
-
-postfixtest.o: postfixtest.cpp InfixToPostfix.h
-	$(CXX) $(CXXFLAGS) -c postfixtest.cpp
-
-InfixToPostfix.o: InfixToPostfix.cpp InfixToPostfix.h Stack/Stack.h
-	$(CXX) $(CXXFLAGS) -c InfixToPostfix.cpp
-
-Stack.o: Stack/Stack.cpp Stack/Stack.h
-	$(CXX) $(CXXFLAGS) -c Stack/Stack.cpp
+ExpressionParser.o: ExpressionParser.cpp ExpressionParser.h BinaryTree.h
+	$(CXX) $(CXXFLAGS) -c ExpressionParser.cpp
 
 clean:
-	rm -f *.o $(TARGET_TEST) $(TARGET_POSTFIX_TEST)
+	rm -f $(TARGET) $(OBJS)
