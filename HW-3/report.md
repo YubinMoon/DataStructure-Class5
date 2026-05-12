@@ -8,7 +8,9 @@
 배열은 ArrayMath()함수를 통해 연산함
 
 first와 second의 같은 차수 항을 더해 last에 저장함
-![last = first + second](Screenshots/2026-05-07220130.png)
+
+![last = first + second](img/img5.png)
+
 이후 높은 차수 항부터 출력함
 
 Linked List는 Node 구조체를 비롯한 여러가지 함수를 통해 계산
