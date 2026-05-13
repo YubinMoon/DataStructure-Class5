@@ -6,25 +6,25 @@
 배열로 계산하는 부분과 Linked List로 계산하는 부분을 나누어서 계산하는 프로그램을 작성하였음
 
 배열은 ArrayMath()함수를 통해 연산함
-![last = first + second](img/img6.png)
+![last = first + second](./P2/img/img6.png)
 
 
 first와 second의 같은 차수 항을 더해 last에 저장함
 
-![arraym](img/img5.png)
+![arraym](./P2/img/img5.png)
 
 이후 높은 차수 항부터 출력함
 
 Linked List는 Node 구조체를 비롯한 여러가지 함수를 통해 계산
 
 appendNode()로 항을 리스트에 추가.
-![append](img/img7.png)
+![append](./P2/img/img7.png)
 addPoly()에서 두 리스트를 병합하며 같은 차수 항은 계수를 합산.
-![addpol](img/img8.png)
+![addpol](./P2/img/img8.png)
 printPoly()는 재귀적으로 역순 출력하여 다항식 형태로 표시.
-![prinpol](img/img9.png)
+![prinpol](./P2/img/img9.png)
 freePoly()로 메모리 해제.
-![freepol](img/img10.png)
+![freepol](./P2/img/img10.png)
 
 실행 흐름
 
@@ -39,7 +39,7 @@ freePoly()로 메모리 해제.
 1 → 링크드 리스트 방식 계산 및 출력
 
 결과 다항식 출력 후 종료.
-![resultm](img/img11.png)
+![resultm](./P2/img/img11.png)
 
 ## Problem 3
 
