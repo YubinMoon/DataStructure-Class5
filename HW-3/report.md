@@ -72,6 +72,8 @@ queuetest.cpp 코드를 작성해 _capacity가 20인 Queue에 20개 알파멧으
 
 <img width="531" height="142" alt="스크린샷 2026-05-07 오전 8 51 09" src="https://github.com/user-attachments/assets/45856354-a4f2-44c6-a777-1cb5ca31abbd" />
 
+<img width="683" height="368" alt="스크린샷 2026-05-13 오후 1 28 22" src="https://github.com/user-attachments/assets/ef8956de-30fc-480f-b1d0-34792da16d7c" />
+
 ## Problem 5
 
 `((1+2)*(3-4))/5` 형태의 Infix 수식을 `12+34-*5/` 형태의 Postfix로 변환해야 한다.
