@@ -8,17 +8,17 @@
 
 이진트리는 `TreeNode` 구조체와 `BinaryTree` 클래스를 이용하여 표현하였다.
 
-![tree](./img1.png)
+![tree](./img/img1.png)
 
 `BinaryTree` 클래스에는 Infix, Prefix, Postfix 순회 함수가 구현되어 있다.
 
 Infix 출력에서는 연산자 노드에 괄호를 붙여 계산 순서가 유지되도록 하였다.
 
-![traversal](./img2.png)
+![traversal](./img/img2.png)
 
 Level order 출력은 queue를 이용하여 루트부터 같은 깊이의 노드를 차례대로 방문하도록 구현하였다.
 
-![level](./img3.png)
+![level](./img/img3.png)
 
 수식 파싱은 `ExpressionParser` 클래스에서 처리하였다.
 
@@ -26,13 +26,13 @@ Level order 출력은 queue를 이용하여 루트부터 같은 깊이의 노드
 
 괄호가 나오면 괄호 안의 수식을 먼저 파싱하여 우선순위를 바꾸도록 구현하였다.
 
-![parser](./img4.png)
+![parser](./img/img4.png)
 
 피연산자는 문자, 숫자, `_`, `.`을 포함할 수 있도록 처리하였다.
 
 잘못된 피연산자나 닫는 괄호가 없는 경우에는 예외를 발생시킨다.
 
-![operand](./img5.png)
+![operand](./img/img5.png)
 
 실행 흐름
 
@@ -42,7 +42,7 @@ Level order 출력은 queue를 이용하여 루트부터 같은 깊이의 노드
 
 생성된 root를 `BinaryTree` 객체에 넣고 Infix order 결과를 출력한다.
 
-![main](./img6.png)
+![main](./img/img6.png)
 
 실행 예시
 
