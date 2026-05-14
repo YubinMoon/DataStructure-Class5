@@ -2,23 +2,44 @@
 #include "ExpressionParser.h"
 #include <iostream>
 #include <string>
+#include <vector>
 
 int main() {
-    std::string input;
+    // 평가 기준 충족: 최소 5개 이상의 연산자와 1개 이상의 ()가 포함된 수식 5개 준비
+    std::vector<std::string> testExpressions = {
+        "3 + 4 * (2 - 1) / 5 + 6",
+        "(10 + 2) * 3 - 4 / 2 + 5",
+        "8 / (2 + 2) * 3 - 1 + 7",
+        "5 * (4 - 2) + 8 / 4 - 1",
+        "(7 + 3) * (5 - 2) / 3 + 1"
+    };
 
-    std::cout << "산술식을 입력하세요: ";
-    std::getline(std::cin, input);
+    ExpressionParser parser;
 
-    try {
-        ExpressionParser parser;
-        TreeNode* root = parser.parse(input);
-        BinaryTree tree(root);
+    for (size_t i = 0; i < testExpressions.size(); ++i) {
+        std::cout << "========================================" << std::endl;
+        std::cout << "Test " << i + 1 << ": " << testExpressions[i] << std::endl;
+        
+        try {
+            TreeNode* root = parser.parse(testExpressions[i]);
+            BinaryTree tree(root);
 
-        std::cout << "Infix order 출력: ";
-        tree.printInfix();
-    } catch (const std::exception& e) {
-        std::cerr << "오류: " << e.what() << std::endl;
-        return 1;
+            std::cout << "[Infix order]   : ";
+            tree.printInfix();
+            
+            std::cout << "[Prefix order]  : ";
+            tree.printPrefix();
+            
+            std::cout << "[Postfix order] : ";
+            tree.printPostfix();
+            
+            std::cout << "[Level order]   : ";
+            tree.printLevelOrder();
+
+        } catch (const std::exception& e) {
+            std::cerr << "오류: " << e.what() << std::endl;
+        }
+        std::cout << std::endl;
     }
 
     return 0;
