@@ -16,6 +16,15 @@ int main() {
 
         std::cout << "Infix order 출력: ";
         tree.printInfix();
+        
+        std::cout << "Prefix order 출력: ";
+        tree.printPrefix();
+
+        std::cout << "Postfix order 출력: ";
+        tree.printPostfix();
+
+        std::cout << "Level order 출력: ";
+        tree.printLevelOrder();
     } catch (const std::exception& e) {
         std::cerr << "오류: " << e.what() << std::endl;
         return 1;
