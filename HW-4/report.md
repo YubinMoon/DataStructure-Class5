@@ -1,22 +1,24 @@
-##보고서 초안
-##p1
+# 보고서 초안
+
+## Problem 1
+
 연산자 우선순위를 반영하는 산술식을 이진트리로 만드는 프로그램을 작성하였다.
 
 입력받은 Infix 수식을 분석하여 연산자는 부모 노드, 피연산자는 자식 노드가 되도록 트리를 구성하였다.
 
 이진트리는 `TreeNode` 구조체와 `BinaryTree` 클래스를 이용하여 표현하였다.
 
-![tree](./img/img1.png)
+![tree](./P1/img/img1.png)
 
 `BinaryTree` 클래스에는 Infix, Prefix, Postfix 순회 함수가 구현되어 있다.
 
 Infix 출력에서는 연산자 노드에 괄호를 붙여 계산 순서가 유지되도록 하였다.
 
-![traversal](./img/img2.png)
+![traversal](./P1/img/img2.png)
 
 Level order 출력은 queue를 이용하여 루트부터 같은 깊이의 노드를 차례대로 방문하도록 구현하였다.
 
-![level](./img/img3.png)
+![level](./P1/img/img3.png)
 
 수식 파싱은 `ExpressionParser` 클래스에서 처리하였다.
 
@@ -24,13 +26,13 @@ Level order 출력은 queue를 이용하여 루트부터 같은 깊이의 노드
 
 괄호가 나오면 괄호 안의 수식을 먼저 파싱하여 우선순위를 바꾸도록 구현하였다.
 
-![parser](./img/img4.png)
+![parser](./P1/img/img4.png)
 
 피연산자는 문자, 숫자, `_`, `.`을 포함할 수 있도록 처리하였다.
 
 잘못된 피연산자나 닫는 괄호가 없는 경우에는 예외를 발생시킨다.
 
-![operand](./img/img5.png)
+![operand](./P1/img/img5.png)
 
 실행 흐름
 
@@ -40,7 +42,7 @@ Level order 출력은 queue를 이용하여 루트부터 같은 깊이의 노드
 
 생성된 root를 `BinaryTree` 객체에 넣고 Infix order 결과를 출력한다.
 
-![main](./img/img6.png)
+![main](./P1/img/img6.png)
 
 실행 예시
 
@@ -60,4 +62,3 @@ Level order 출력은 queue를 이용하여 루트부터 같은 깊이의 노드
 추후 거듭제곱 연산자나 단항 음수까지 처리하도록 확장할 수 있다.
 
 또한 과제 조건을 더 잘 만족하려면 5개 이상의 산술식을 테스트하고, Infix, Prefix, Postfix, Level order 결과를 모두 출력하도록 main 함수를 확장할 수 있다.
-
