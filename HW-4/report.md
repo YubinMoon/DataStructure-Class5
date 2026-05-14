@@ -88,11 +88,17 @@ Huffman 클래스는 텍스트 인코딩, 디코딩, 단어별 코드 정보 계
 main.cpp에서 paragraph.txt를 읽는다.
 
 Huffman::makeHuffmanCode()가 빈도수를 계산하고 트리를 생성한다.
+
 ![hufcodemake](./P2/img/makehufcode.png)
+
 Huffman::encode()가 입력 텍스트를 허프만 코드로 변환한다.
+
 ![hufencode](./P2/img/hufencode.png)
+
 Huffman::decode()가 허프만 코드 비트를 다시 원문으로 복원한다.
+
 ![hufdecode](./P2/img/hufdecode.png)
+
 선택된 단어 5개에 대해 허프만 코드와 ASCII 코드 길이를 비교한다.
 
 전체 텍스트의 허프만 인코딩 길이와 ASCII 길이를 비교하여 압축 비율을 출력한다.
